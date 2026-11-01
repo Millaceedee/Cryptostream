@@ -765,307 +765,308 @@ const _LIST = [
   tagline: 'Ancient Hebrew mirror substitution',
   desc: {
     en: 'Atbash is one of the oldest known substitution ciphers. The alphabet is simply reversed: the first letter (A) becomes the last (Z), the second (B) becomes (Y), and so on.',
-    fi: 'Atbash on yksi maailman vanhimmista tunnetuista salakirjoituksista. Aakkoset käännetään yksinkertaisesti ympäri: A muuttuu Z:ksi, B muuttuu Y:ksi ja niin edelleen.'
+    fi: 'Atbash on yksi vanhimmista tunnetuista korvaussalauksista. Aakkosjärjestys käännetään päinvastaiseksi: A muuttuu Z:ksi, B muuttuu Y:ksi ja niin edelleen.'
   },
   weak: {
     en: 'There is no secret key, and the cipher is symmetric. Running it twice returns the original plaintext.',
-    fi: 'Avainta ei ole lainkaan, ja järjestelmä on symmetrinen. Kahdesti ajettuna viesti palaa selväkieleksi.'
+    fi: 'Salauksessa ei käytetä salaista avainta, ja se on itseään kääntävä menetelmä. Kun salaus tehdään kahdesti, tuloksena on alkuperäinen selväkielinen viesti.'
   },
   params: [['Key', 'reversed alphabet'], ['Key space', '1 option'], ['Processing', 'character by character']],
   sep: 3, prep: prepClassic, make: () => atbashEngine(),
   msgs: {
     en: ['Jerusalem has fallen. Beware of the enemy.', 'Mirroring turns everything upside down.', 'Ancient Hebrew cryptographic tradition.', 'The first shall become the last.'],
-    fi: ['Jerusalem on vallattu. Varo vihollista.', 'Peilaus kääntää kaiken päälaelleen.', 'Muinainen heprealainen salaus.', 'Ensimmäinen tulee viimeiseksi.']
+    fi: ['Jerusalem on vallattu. Varo vihollista.', 'Peilaus kääntää kaiken päälaelleen.', 'Muinaista heprealaista salaustraditiota.', 'Ensimmäisestä tulee viimeinen.']
   } },
 { id: 'rot13', name: 'ROT13', year: '≈ 1982', type: 'Shift cipher', strength: 1, color: '#ffb347', direct: true, k: 1, charset: A,
   tagline: 'Usenet spoiler obfuscator',
   desc: {
     en: 'ROT13 is a special case of Caesar with a fixed shift of 13. Widely used on early internet forums to hide spoilers or punchlines.',
-    fi: 'ROT13 on Caesarin erikoistapaus tasan 13 merkin siirrolla. Käytettiin laajasti varhaisen netin foorumeilla spoilereiden piilottamiseen.'
+    fi: 'ROT13 on Caesarin salauksen erikoistapaus, jossa kirjaimia siirretään aina 13 paikkaa. Sitä käytettiin laajasti varhaisen internetin keskustelufoorumeilla juonipaljastusten ja vitsien piilottamiseen.'
   },
   weak: {
     en: 'Offers zero cryptographic security. Meant solely to protect human eyes from accidental spoilers.',
-    fi: 'Ei tarjoa minkäänlaista tietoturvaa. Tarkoitettu vain ihmisen silmiltä piilottamiseen.'
+    fi: 'Ei tarjoa minkäänlaista kryptografista suojaa. Se on tarkoitettu ainoastaan piilottamaan sisältöä, jotta juonipaljastukset eivät osuisi vahingossa silmiin.'
   },
   params: [['Key', 'shift +13'], ['Key space', '1 fixed shift'], ['Processing', 'character by character']],
   sep: 3, prep: prepClassic, make: () => shiftEngine(13),
   msgs: {
     en: ['Movie ending is revealed in this message.', 'Spoiler warning: hero wins at the end.', 'Simple internet classic cipher.', 'Rotate back to read plaintext.'],
-    fi: ['Elokuvan loppu paljastuu tässä viestissä.', 'Spoilerivaroitus: sankari voittaa lopussa.', 'Yksinkertainen nettiklassikko.', 'Käännä vastavuoroisesti takaisin.']
+    fi: ['Tässä viestissä paljastetaan elokuvan loppuratkaisu.', 'Juonipaljastusvaroitus: sankari voittaa lopussa.', 'Yksinkertainen internetklassikko.', 'Palauta alkuperäinen teksti siirtämällä kirjaimia takaisin.']
   } },
 { id: 'skytale', name: 'Skytale', year: '≈ 700 BCE', type: 'Transposition cipher', strength: 1, color: '#7dff4f', direct: false, k: 1, charset: A,
   tagline: 'Spartan military baton',
   desc: {
     en: 'Spartan generals wrapped a leather strap around a wooden staff and wrote a message along it. Unwrapped, it looks like nonsense.',
-    fi: 'Spartalainen sotapäällikkö kietoi nahkaremmin puusauvan ympärille ja kirjoitti viestin. Auki kierrettynä remmillä on pelkkää sekamelskaa.'
+    fi: 'Perimätiedon mukaan spartalaiset sotapäälliköt kietoivat nahkaremmin puusauvan ympärille ja kirjoittivat viestin sen pinnalle. Kun remmi avattiin, kirjaimet näyttivät satunnaisilta.'
   },
   weak: {
     en: 'Letter frequency remains completely unchanged, and only a few staff thicknesses exist to try.',
-    fi: 'Kirjainten tiheys säilyy ennallaan, ja sauvan paksuuksia on vain muutama kokeiltavaksi.'
+    fi: 'Kirjainten esiintymistiheydet säilyvät ennallaan, ja kokeiltavissa on vain rajallinen määrä erilaisia sauvan paksuuksia.'
   },
   params: [['Key', 'staff circumference: 4'], ['Key space', 'few thicknesses'], ['Block', '16 letters (4x4)']],
   sep: 3, prep: prepSky, make: () => skytaleEngine(skyCols, skyRows),
   msgs: {
     en: ['Ephors command: withdraw your troops.', 'Persian fleet sighted in the bay.', 'Hold the pass at all costs.', 'Staff thickness is a strict secret.'],
-    fi: ['Ephorit käskevät: vedä joukkosi pois.', 'Persian laivasto on nähty lahdella.', 'Leonidas pitää solaa hinnalla millä hyvänsä.', 'Sauvan paksuus on salaisuus.']
+    fi: ['Ephorit käskevät vetämään joukot pois.', 'Persian laivasto on havaittu lahdella.', 'Puolustakaa solaa hinnalla millä hyvänsä.', 'Sauvan paksuus on tarkoin varjeltu salaisuus.']
   } },
 { id: 'caesar', name: 'Caesar', year: '≈ 50 BCE', type: 'Shift cipher', strength: 1, color: '#ffd23f', direct: true, k: 1, charset: A,
   tagline: 'Roman military dispatch to Cleopatra', wheel: 3,
   desc: {
     en: 'Julius Caesar shifted each letter of his messages by three positions: A becomes D, B becomes E. The entire key is a single number.',
-    fi: 'Julius Caesar siirsi viestiensä jokaista kirjainta kolme askelta: A tulee D:ksi, B tulee E:ksi. Koko avain on yksi luku.'
+    fi: 'Julius Caesar siirsi viestiensä jokaista kirjainta kolme paikkaa eteenpäin: A muuttuu D:ksi ja B muuttuu E:ksi. Koko salausavain on yksi luku.'
   },
   weak: {
     en: 'Only 25 possible keys exist, making brute-force instant. Letter frequency analysis immediately breaks it.',
-    fi: 'Vain 25 mahdollista avainta, joten murto käy hetkessä. Kirjainten yleisyys paljastaa kielen.'
+    fi: 'Mahdollisia avaimia on vain 25, joten kaikki vaihtoehdot voidaan kokeilla hetkessä. Myös kirjainten esiintymistiheyksien analysointi paljastaa salauksen nopeasti.'
   },
   params: [['Key', 'shift +3'], ['Key space', '25 choices'], ['Processing', 'character by character']],
   sep: 3, prep: prepClassic, make: () => shiftEngine(3),
   msgs: {
     en: ['Cleopatra, my legions arrive at dawn.', 'The Nile is calm, but Rome watches.', 'Veni, vidi, vici. Battle is won.', 'Send gold via the royal galley.'],
-    fi: ['Kleopatra, legioonani saapuvat aamunkoitteessa.', 'Niili on tyyni, mutta Rooma katsoo.', 'Veni, vidi, vici. Taistelu on voitettu.', 'Lähetä kultaa kuninkaallisella laivalla.']
+    fi: ['Kleopatra, legioonani saapuvat aamunkoitteessa.', 'Niili on tyyni, mutta Rooma pitää silmällä.', 'Veni, vidi, vici. Taistelu on voitettu.', 'Lähetä kultaa kuninkaallisella kaleerilla.']
   } },
 { id: 'vigenere', name: 'Vigenère', year: '1553', type: 'Polyalphabetic substitution', strength: 2, color: '#ff9f1c', direct: true, k: 1, charset: A,
   tagline: 'Le chiffre indéchiffrable',
   desc: {
     en: 'A keyword determines a changing shift for each letter. The same letter can encrypt differently depending on its position. Invented by Giovan Battista Bellaso in 1553 and later misattributed to Blaise de Vigenère.',
-    fi: 'Avainsana määrää jokaiselle kirjaimelle eri siirron. Sama kirjain voi salautua eri tavoin. Keksijä oli Giovan Battista Bellaso vuonna 1553; Vigenèren nimi on myöhempi virhekäsitys.'
+    fi: 'Avainsana määrää jokaiselle kirjaimelle oman siirron. Sama kirjain voidaan salata eri tavoin sen sijainnista riippuen. Menetelmän kehitti Giovan Battista Bellaso vuonna 1553, mutta se yhdistettiin myöhemmin virheellisesti Blaise de Vigenèren nimeen.'
   },
   weak: {
     en: 'Repeating patterns allow Kasiski examination to find keyword length, reducing it to simple Caesar ciphers.',
-    fi: 'Toistuvat kuviot paljastavat avainsanan pituuden Kasiski-menetelmällä.'
+    fi: 'Toistuvat kuviot voivat paljastaa avainsanan pituuden Kasiski-menetelmällä. Tämän jälkeen salaus voidaan purkaa tutkimalla yksittäisiä Caesar-salauksia.'
   },
   params: [['Keyword', vigKey], ['Key space', '26^11 ≈ 3.7 × 10^15'], ['Processing', 'character by character']],
   sep: 3, prep: prepClassic, make: () => vigEngine(vigKey),
   msgs: {
     en: ['The king has read your letter.', 'Meet me at the square at sunset.', 'Venetian merchants buy all pepper.', 'Unbreakable for nearly 300 years.'],
-    fi: ['Kuningas on lukenut kirjeesi.', 'Tapaamme torilla auringonlaskun aikaan.', 'Venetsian kauppiaat ostavat kaiken pippurin.', 'Murtumaton lähes 300 vuotta.']
+    fi: ['Kuningas on lukenut kirjeesi.', 'Tavataan torilla auringonlaskun aikaan.', 'Venetsialaiset kauppiaat ostavat kaiken pippurin.', 'Aikoinaan lähes murtumattomana pidetty.']
   } },
 { id: 'enigma', name: 'Enigma', year: '1920–1945', type: 'Rotor machine', strength: 4, color: '#ff4d6d', direct: true, k: 1, charset: A,
   tagline: 'Naval weather report',
   desc: {
     en: 'Electromechanical cipher machine: every keystroke steps the rotors, so the substitution keeps changing, and a plugboard swaps ten fixed letter pairs.',
-    fi: 'Sähkömekaaninen salauskone: jokainen näppäilys pyörittää roottoreita, joten korvaus vaihtuu jatkuvasti, ja kytkentätaulu vaihtaa kymmenen kiinteää kirjainparia.'
+    fi: 'Sähkömekaaninen salauskone: jokainen näppäinpainallus siirtää roottoreita yhden askeleen, jolloin korvaussalaus muuttuu jatkuvasti. Kytkentätaulu vaihtaa keskenään kymmenen kirjainparia.'
   },
   weak: {
     en: 'A letter never encrypts to itself. Bletchley Park exploited human habits and cribs to crack it.',
-    fi: 'Kirjain ei koskaan salaudu itsekseen. Bletchley Park mursi koodin arvatuilla sanoilla.'
+    fi: 'Kirjain ei koskaan salaudu itsekseen. Bletchley Park hyödynsi ihmisten viestintätapoja ja arvattuja tekstikatkelmia salauksen murtamisessa.'
   },
   params: [['Rotors', 'I – II – III, Reflector B'], ['Start position', enigmaStart], ['Plugboard', enigmaPlug]],
   sep: 4, prep: prepEnigma, make: () => enigmaEngine(enigmaStart, enigmaPlug),
   msgs: {
     en: ['Weather report: gale force winds in Biscay.', 'Submarine returning to base tomorrow.', 'Nothing to report. Maintain radio silence.', 'Convoy spotted in the North Atlantic.'],
-    fi: ['Säätiedotus: myrsky Biskajanlahdella.', 'Sukellusvene palaa tukikohtaan huomenna.', 'Ei raportoitavaa. Pysykää kuulolla.', 'Saattue havaittu Pohjois-Atlantilla.']
+    fi: ['Säätiedotus: myrskytuulia Biskajanlahdella.', 'Sukellusvene palaa tukikohtaan huomenna.', 'Ei raportoitavaa. Radioliikenne on pidettävä hiljaisena.', 'Saattue havaittu Pohjois-Atlantilla.']
   } },
 { id: 'des', name: 'DES', year: '1977', type: 'Block cipher (Feistel)', strength: 3, color: '#b388ff', direct: false, k: 2, charset: HEXSET,
   tagline: 'First commercial standard',
   desc: {
     en: 'Data Encryption Standard: 64-bit blocks passing through 16 Feistel rounds with key mixing and S-boxes.',
-    fi: 'Data Encryption Standard: 64-bittinen lohko kulkee 16 Feistel-kierroksen läpi.'
+    fi: 'Data Encryption Standard: data käsitellään 64-bittisinä lohkoina, jotka käyvät läpi 16 Feistel-kierrosta avaimen sekoituksineen ja S-laatikoineen.'
   },
   weak: {
     en: 'Key is only 56 bits. In 1998 the EFF Deep Crack machine found a key in under three days; today it takes hours.',
-    fi: 'Avain on vain 56 bittiä. EFF:n Deep Crack löysi avaimen vuonna 1998 alle kolmessa vuorokaudessa; nykyään se vie tunteja.'
+    fi: 'Avain on vain 56 bittiä. EFF:n Deep Crack -kone löysi avaimen vuonna 1998 alle kolmessa vuorokaudessa. Nykyisin tarvittava aika riippuu käytettävissä olevasta laitteistosta ja laskentatehosta.'
   },
   params: [['Key', hx(kDES) + ' (56 bit eff.)'], ['Block', '64 bits'], ['Rounds', '16'], ['Mode', 'CBC']],
   sep: 3, prep: s => s, make: cbc(8, b => CR.desBlock(dk, b), ivDES),
   msgs: {
     en: ['Transfer: 4500 units from account 12 to 65.', 'ATM 0042: withdrawal approved.', 'Warning: foreign card usage detected.', 'Account balance updated successfully.'],
-    fi: ['Siirto: 4500 yksikköä tililtä 12 tilille 65.', 'Automaatti 0042: nosto hyväksytty.', 'Varoitus: ulkomaankäyttö havaittu.', 'Saldo päivitetty onnistuneesti.']
+    fi: ['Siirto: 4 500 yksikköä tililtä 12 tilille 65.', 'Pankkiautomaatti 0042: käteisnosto hyväksytty.', 'Varoitus: ulkomainen kortinkäyttö havaittu.', 'Tilin saldo on päivitetty onnistuneesti.']
   } },
 { id: 'rc4', name: 'RC4', year: '1987', type: 'Stream cipher', strength: 3, color: '#ff6bd6', direct: false, k: 2, charset: HEXSET,
   tagline: 'Rivest’s ten-line stream cipher',
   desc: {
     en: 'Generates a pseudo-random keystream using table swaps (KSA + PRGA) XORed byte-by-byte with plaintext.',
-    fi: 'Luo avainvirtaa taulukon vaihdoilla (KSA + PRGA), joka XOR-yhdistetään viestiin tavu kerrallaan.'
+    fi: 'Muodostaa näennäissatunnaisen avainvirran taulukon alkioita vaihtamalla (KSA + PRGA). Avainvirta yhdistetään selvätekstiin XOR-operaatiolla tavu kerrallaan.'
   },
   weak: {
     en: 'Biased output bytes and the weak key setup in WEP let attackers crack Wi-Fi within minutes.',
-    fi: 'Vinoutunut avainvirta ja WEP:n heikko avaintenkäsittely mahdollistivat wifin murtamisen minuuteissa.'
+    fi: 'Avainvirran vinoutumat ja WEP-protokollan heikko avaintenhallinta mahdollistivat langattomien verkkojen murtamisen.'
   },
   params: [['Key', hx(kRC4) + ' (128 bit)'], ['State', '256-byte S-table'], ['Operation', 'XOR stream']],
   sep: 3, prep: s => s, make: () => rc4Engine(kRC4),
   msgs: {
     en: ['WEP Wi-Fi relied on RC4 streams.', 'Second byte of keystream shows bias.', 'RC4 was a trade secret until 1994.', 'Two messages with same key leak data.'],
-    fi: ['WEP-wifi käytti RC4-virtaa.', 'Avainvirran toinen tavu on vinoutunut.', 'RC4 oli liikesalaisuus vuoteen 1994.', 'Kaksi viestiä samalla avaimella vuotaa.']
+    fi: ['WEP-salaus perustui RC4-avainvirtaan.', 'Avainvirran toisessa tavussa esiintyy vinoumaa.', 'RC4 pysyi liikesalaisuutena vuoteen 1994 asti.', 'Kahden samalla avaimella salatun viestin käyttäminen voi paljastaa tietoja.']
   } },
-{ id: 'dh', name: 'Diffie-Hellman', year: '1976', type: 'Key exchange', strength: 7, level: { en: 'Secure with 2048+ bit groups; quantum-vulnerable', fi: 'Turvallinen 2048+ bitin ryhmillä; kvanttiherkkä' }, color: '#00ffd5', direct: false, k: 2, charset: HEXSET,
+{ id: 'dh', name: 'Diffie-Hellman', year: '1976', type: 'Key exchange', strength: 7, level: { en: 'Secure with 2048+ bit groups; quantum-vulnerable', fi: 'Turvallinen vähintään 2048-bittisillä ryhmillä; haavoittuvainen kvanttihyökkäyksille' }, color: '#00ffd5', direct: false, k: 2, charset: HEXSET,
   tagline: 'Secret cryptographic handshake',
   desc: {
     en: 'The first practical method for two parties to agree on a shared secret over an insecure channel. This demo runs a real exchange in a 256-bit group; the shared secret then seeds a SHA-256 keystream.',
-    fi: 'Ensimmäinen käytännöllinen tapa sopia yhteisestä salaisuudesta turvattoman kanavan yli. Demo suorittaa oikean avaintenvaihdon 256-bittisessä ryhmässä; jaettu salaisuus ohjaa SHA-256-avainvirtaa.'
+    fi: 'Ensimmäinen käytännöllinen menetelmä, jolla kaksi osapuolta voi muodostaa yhteisen salaisuuden turvattoman viestintäkanavan kautta. Demo suorittaa oikean avaintenvaihdon 256-bittisessä ryhmässä, ja jaetusta salaisuudesta johdetaan SHA-256-avainvirta.'
   },
   weak: {
     en: 'Vulnerable to Man-in-the-Middle attacks unless authenticated with digital certificates. Classical DH also falls to quantum computers (Shor’s algorithm).',
-    fi: 'Haavoittuvainen väliin tulleelle hyökkääjälle (MitM), ellei käytetä varmenteita. Perinteinen DH murtuu myös kvanttikoneella (Shorin algoritmi).'
+    fi: 'Altis välimieshyökkäykselle (MitM), ellei avaintenvaihtoa todenneta esimerkiksi digitaalisilla varmenteilla. Perinteinen Diffie–Hellman on myös haavoittuvainen Shorin algoritmia käyttäville kvanttitietokoneille.'
   },
   params: [['Protocol', 'g^x mod p'], ['Prime p', sh(dhP.toString(16).toUpperCase()) + ' (2^255 − 19)'], ['Generator g', '2'], ['Alice public A', sh(dhPubA.toString(16).toUpperCase())], ['Bob public B', sh(dhPubB.toString(16).toUpperCase())], ['Shared secret', dhOK ? 'both sides agree ✓' : 'MISMATCH'], ['Group size', '256-bit demo; real use 2048+ bit']],
   sep: 3, prep: s => s, make: () => dhEngine(),
   msgs: {
     en: ['Exchanging public parameters securely.', 'Mathematical bridge across open network.', 'Diffie and Hellman revolutionized crypto.', 'Shared secret calculated independently.'],
-    fi: ['Vaihdetaan julkisia parametreja turvallisesti.', 'Matemaattinen silta avoimen verkon yli.', 'Diffie ja Hellman mullistivat kryptografian.', 'Jaettu salaisuus laskettu itsenäisesti.']
+    fi: ['Julkisia parametreja vaihdetaan avoimessa verkossa.', 'Matematiikan avulla muodostetaan yhteinen salaisuus avoimen verkon yli.', 'Diffie ja Hellman mullistivat kryptografian.', 'Molemmat osapuolet laskivat saman jaetun salaisuuden itsenäisesti.']
   } },
 { id: 'blowfish', name: 'Blowfish', year: '1993', type: 'Block cipher', strength: 5, color: '#4dd0ff', direct: false, k: 2, charset: HEXSET,
   tagline: 'Fast and free block cipher',
   desc: {
     en: 'Bruce Schneier’s DES replacement featuring 16 rounds and key-dependent S-boxes initialized using Pi digits.',
-    fi: 'Bruce Schneierin luoma nopea lohkosalaus avainriippuvilla S-laatikoilla ja piin desimaaleilla.'
+    fi: 'Bruce Schneierin kehittämä nopea lohkosalaus, jossa on 16 kierrosta ja avainriippuvaiset S-laatikot. Ne alustetaan piin desimaaleista johdetuilla arvoilla.'
   },
   weak: {
     en: 'Small 64-bit block size causes collision risks (Sweet32 attack) when encrypting large amounts of data.',
-    fi: 'Pieni 64-bittinen lohko aiheuttaa törmäysriskejä (Sweet32) suuria tietomääriä käsiteltäessä.'
+    fi: 'Pieni 64-bittinen lohkokoko aiheuttaa törmäysriskejä (Sweet32-hyökkäys), kun salataan suuria tietomääriä.'
   },
   params: [['Key', hx(kBF) + ' (128 bit)'], ['Block', '64 bits'], ['Rounds', '16'], ['Mode', 'CBC']],
   sep: 3, prep: s => s, make: cbc(8, b => CR.bfBlock(bf, b), ivBF),
   msgs: {
     en: ['Password stored as secure hash.', 'Bruce Schneier released Blowfish freely.', 'Backup complete and encrypted.', 'Fast, compact, and free.'],
-    fi: ['Salasana tallennettu tiivisteenä.', 'Bruce Schneier julkaisi Blowfishin vapaasti.', 'Varmuuskopio valmis ja salattu.', 'Nopea, kompakti ja ilmainen.']
+    fi: ['Salasana tallennettu suojattuna tiivisteenä.', 'Bruce Schneier julkaisi Blowfishin vapaasti käytettäväksi.', 'Varmuuskopiointi valmis ja tiedot salattu.', 'Nopea, kompakti ja vapaasti käytettävä.']
   } },
 { id: 'tdes', name: 'Triple DES', year: '1998', type: 'Block cipher (3 × DES)', strength: 5, color: '#3df5c8', direct: false, k: 2, charset: HEXSET,
   tagline: 'DES applied three times',
   desc: {
     en: 'Applies DES three times to each block (Encrypt-Decrypt-Encrypt) using independent keys.',
-    fi: 'Salaa tiedon kolmella peräkkäisellä DES-operaatiolla (Salaa-Pura-Salaa) erillisillä avaimilla.'
+    fi: 'Salaa jokaisen lohkon kolmella peräkkäisellä DES-operaatiolla (salaa, pura, salaa) käyttäen erillisiä avaimia.'
   },
   weak: {
     en: 'Effective security is only ≈112 bits (meet-in-the-middle), plus slow speed and a 64-bit block. NIST deprecated it in 2017 and disallowed it for new encryption after 2023.',
-    fi: 'Tehollinen turva on vain ≈112 bittiä (meet-in-the-middle), lisäksi hidas ja 64-bittinen lohko. NIST vanhensi sen 2017 ja kielsi sen uusissa salauksissa 2023 jälkeen.'
+    fi: 'Tehollinen turvallisuustaso on vain noin 112 bittiä meet-in-the-middle-hyökkäyksen vuoksi. Lisäksi algoritmi on hidas ja sen lohkokoko on vain 64 bittiä. NIST poisti sen käytöstä uuden salauksen tuottamisessa vuoden 2023 jälkeen.'
   },
   params: [['Keys', '3 DES keys (168 bit nominal, ≈112 bit effective)'], ['Block', '64 bits'], ['Rounds', '3 × 16']],
   sep: 3, prep: s => s, make: cbc(8, b => CR.desBlock(tk[2], CR.desBlock(tk[1], CR.desBlock(tk[0], b), true)), ivTD),
   msgs: {
     en: ['Payment terminal session key rotated.', 'Triple round: encrypt, decrypt, encrypt.', 'Bank transfer verified in network.', 'Legacy banking standard.'],
-    fi: ['Maksupäätteen avain vaihdettu.', 'Kolme kierrosta: salaa, pura, salaa.', 'Pankkisiirto vahvistettu verkossa.', 'Vanhentunut pankkistandardi.']
+    fi: ['Maksupäätteen istuntoavain vaihdettu.', 'Kolme vaihetta: salaa, pura ja salaa uudelleen.', 'Pankkisiirto vahvistettu verkossa.', 'Vanha pankkialan salausstandardi.']
   } },
-{ id: 'rsa', name: 'RSA', year: '1977', type: 'Asymmetric encryption', strength: 7, level: { en: 'Demo key breaks in minutes; real RSA needs 2048+ bits (quantum-vulnerable)', fi: 'Demoavain murtuu minuuteissa; oikea RSA vaatii 2048+ bittiä (kvanttiherkkä)' }, color: '#ff7849', direct: false, k: 2, charset: HEXSET,
+{ id: 'rsa', name: 'RSA', year: '1977', type: 'Asymmetric encryption', strength: 7, level: { en: 'Demo key breaks in minutes; real RSA needs 2048+ bits (quantum-vulnerable)', fi: 'Demoavain murtuu minuuteissa; oikea RSA vaatii vähintään 2048 bittiä ja on haavoittuvainen kvanttihyökkäyksille' }, color: '#ff7849', direct: false, k: 2, charset: HEXSET,
   tagline: 'Public key cryptography',
   desc: {
     en: 'Rivest, Shamir, and Adleman: encryption with public key, decryption with private key. Based on prime factorization.',
-    fi: 'Rivest, Shamir ja Adleman: julkinen avain lukitsee, yksityinen avaa. Perustuu siihen, että suuren luvun jakaminen alkutekijöihin on vaikeaa.'
+    fi: 'Rivest, Shamir ja Adleman: julkinen avain salaa viestin ja yksityinen avain purkaa sen. Turvallisuus perustuu suurten lukujen alkutekijöihin jakamisen vaikeuteen.'
   },
   weak: {
     en: 'Demo uses 256-bit key without padding. Real RSA needs ≥2048 bits and quantum computers break it.',
-    fi: 'Demo käyttää 256-bittistä avainta. Oikea vaatii ≥2048 bittiä; kvanttikone murtaa sen.'
+    fi: 'Demo käyttää 256-bittistä avainta ilman täydennysmenetelmää. Oikeassa käytössä RSA vaatii vähintään 2048-bittisen avaimen, mutta riittävän tehokas kvanttitietokone voisi murtaa sen.'
   },
   params: [['Modulus n', sh(rsa.n.toString(16).toUpperCase())], ['Public e', rsa.e.toString()], ['Key size', '256 bit (demo)']],
   sep: 3, prep: s => s, make: () => rsaEngine(rsa),
   msgs: {
     en: ['Public key shared with everyone.', 'Product of large primes is hard to factor.', 'Alice sends message to Bob securely.', 'Invented in 1977.'],
-    fi: ['Julkinen avain jaettu kaikille.', 'Suurten alkulukujen tuloa on vaikea jakaa tekijöihin.', 'Alice lähettää viestin Bobille turvallisesti.', 'Keksitty vuonna 1977.']
+    fi: ['Julkinen avain voidaan jakaa kaikille.', 'Suurten alkulukujen tulon jakaminen tekijöihin on vaikeaa.', 'Alice lähettää viestin Bobille.', 'Kehitetty vuonna 1977.']
   } },
 { id: 'serpent', name: 'Serpent', year: '1998', type: 'Block cipher (SPN)', strength: 9, color: '#50c878', direct: false, k: 2, charset: HEXSET,
   tagline: 'High-security AES finalist',
   desc: {
     en: 'Designed by Anderson, Biham, and Knudsen. Prioritizes extreme security margins with 32 full rounds.',
-    fi: 'Andersonin, Bihamin ja Knudsenin suunnittelema lohkosalaus, joka panostaa turvallisuuteen (32 kierrosta).'
+    fi: 'Andersonin, Bihamin ja Knudsenin suunnittelema lohkosalaus, joka painottaa suurta turvallisuusmarginaalia ja käyttää 32 kierrosta.'
   },
   weak: {
     en: 'Extremely robust with no practical attacks. Slightly slower than AES due to massive security margin.',
-    fi: 'Erittäin vankka, ei käytännön hyökkäyksiä. Hieman hitaampi kuin AES suuren turvamarginaalin vuoksi.'
+    fi: 'Erittäin vahva salaus, johon ei tunneta käytännössä toteuttamiskelpoisia hyökkäyksiä. Hieman AES:ää hitaampi suuren turvallisuusmarginaalinsa vuoksi.'
   },
   params: [['Key', hx(kSerp) + ' (128 bit)'], ['Block', '128 bits'], ['Rounds', '32'], ['Mode', 'CBC']],
   sep: 3, prep: s => s, make: cbc(16, b => CR.serpentBlock(spKeys, b), ivSerp),
   msgs: {
     en: ['Serpent was an AES competition finalist.', 'Thirty-two rounds of pure security.', 'Designed to withstand aggressive cryptanalysis.', 'Conservative and ultra-secure.'],
-    fi: ['Serpent oli AES-kilpailun finalisti.', 'Kolmekymmentäkaksi kierrosta puhtaana turvana.', 'Suunniteltu kestämään rankankin analyysin.', 'Konservatiivinen ja erittäin turvallinen.']
+    fi: ['Serpent oli AES-kilpailun finalisti.', 'Kolmekymmentäkaksi salauskierrosta.', 'Suunniteltu kestämään vaativaa kryptanalyysiä.', 'Varovaisesti suunniteltu ja erittäin vahva salaus.']
   } },
 { id: 'twofish', name: 'Twofish', year: '1998', type: 'Block cipher', strength: 9, color: '#4d9bff', direct: false, k: 2, charset: HEXSET,
   tagline: 'AES competition finalist',
   desc: {
     en: 'Schneier’s AES candidate: 128-bit block, 16 rounds, key-dependent S-boxes, and MDS matrix mixing.',
-    fi: 'Schneierin ryhmän AES-ehdokas: 128-bittinen lohko, 16 kierrosta ja avainriippuvat S-laatikot.'
+    fi: 'Schneierin tutkimusryhmän AES-ehdokas: 128-bittinen lohko, 16 kierrosta, avainriippuvaiset S-laatikot ja MDS-matriisiin perustuva sekoitus.'
   },
   weak: {
     en: 'No practical attacks known. Lost AES selection primarily on performance and standardization choices.',
-    fi: 'Ei tunnettuja käytännön hyökkäyksiä. Hävisi AES-valinnan suorituskyvyn ja standardoinnin vuoksi.'
+    fi: 'Algoritmiin ei tunneta käytännössä toteuttamiskelpoisia hyökkäyksiä. Se ei tullut valituksi AES-standardiksi pääasiassa suorituskykyyn ja standardointiin liittyvien valintojen vuoksi.'
   },
   params: [['Key', hx(kTF) + ' (128 bit)'], ['Block', '128 bits'], ['Rounds', '16']],
   sep: 3, prep: s => s, make: cbc(16, b => CR.TF.enc(tf, b), ivTF),
   msgs: {
     en: ['Twofish was an AES finalist.', 'Key-dependent S-boxes confuse attackers.', 'Private files secured successfully.', 'Two fish, complex network.'],
-    fi: ['Twofish oli AES-kilpailun finalisti.', 'Avainriippuvat S-laatikot hämäävät hyökkääjää.', 'Yksityiset tiedostot suojattu.', 'Kaksi kalaa, monimutkainen verkko.']
+    fi: ['Twofish oli AES-kilpailun finalisti.', 'Avainriippuvaiset S-laatikot vaikeuttavat hyökkääjän työtä.', 'Yksityiset tiedostot on suojattu onnistuneesti.', 'Kaksi kalaa, monimutkainen verkko.']
   } },
 { id: 'aes128', name: 'AES-128', year: '2001', type: 'Block cipher (SPN)', strength: 9, color: '#2ee6a6', direct: false, k: 2, charset: HEXSET,
   tagline: 'Global encryption standard',
   desc: {
     en: 'Rijndael cipher won AES competition. Substitution-permutation network processing 4x4 matrix over 10 rounds.',
-    fi: 'Rijndael voitti AES-kilpailun. Käyttää 4x4-matriisia ja neljää operaatiota 10 kierroksen ajan.'
+    fi: 'Rijndael voitti AES-kilpailun. Salaus käsittelee 128-bittistä lohkoa 4×4 tavun matriisina kymmenellä kierroksella.'
   },
   weak: {
     en: 'No practical attacks. The universal standard protecting modern Wi-Fi, banking, and communications.',
-    fi: 'Ei käytännön heikkouksia. Maailmanlaajuinen standardi wifissä, pankeissa ja viestinnässä.'
+    fi: 'AES:ään ei tunneta käytännössä toteuttamiskelpoisia hyökkäyksiä. Se on maailmanlaajuinen standardi, jota käytetään muun muassa Wi-Fi-verkoissa, pankkipalveluissa ja viestinnässä.'
   },
   params: [['Key', hx(kA128).slice(0, 16) + '…'], ['Block', '128 bits'], ['Rounds', '10']],
   sep: 3, prep: s => s, make: cbc(16, b => CR.aesEnc(a128, b), ivA),
   msgs: {
     en: ['Global standard since 2001.', 'Wi-Fi and phones use this invisibly.', 'Rijndael won by Belgian cryptographers.', 'SubBytes, ShiftRows, MixColumns.'],
-    fi: ['Maailmanlaajuinen standardi vuodesta 2001.', 'Wifi ja puhelimet käyttävät tätä huomaamatta.', 'Belgialaisten Rijndael voitti kilpailun.', 'SubBytes, ShiftRows, MixColumns.']
+    fi: ['Maailmanlaajuinen standardi vuodesta 2001.', 'Wi-Fi ja puhelimet käyttävät AES-salausta huomaamatta.', 'Belgialaisten kryptologien kehittämä Rijndael voitti kilpailun.', 'SubBytes, ShiftRows, MixColumns.']
   } },
 { id: 'aes256', name: 'AES-256', year: '2001', type: 'Block cipher + CTR', strength: 10, color: '#00f0ff', direct: false, k: 2, charset: HEXSET,
   tagline: 'Top-secret clearance level',
   desc: {
     en: 'AES with 256-bit key and 14 rounds in CTR mode, turning block cipher into a high-speed stream cipher.',
-    fi: 'Sama AES, mutta 256-bittinen avain ja 14 kierrosta CTR-tilassa (muuttuu virtasalaukseksi).'
+    fi: 'AES käyttää 256-bittistä avainta ja 14 salauskierrosta. CTR-tilassa lohkosalausta voidaan käyttää virtasalauksen tapaan.'
   },
   weak: {
     en: 'Quantum Grover’s algorithm halves security to 128 bits, which remains completely uncrackable.',
-    fi: 'Kvanttitietokoneen Groverin algoritmi puolittaisi tehon 128 bittiin, mikä on silti murtamaton.'
+    fi: 'Groverin algoritmia käyttävä kvanttihyökkäys voisi pienentää teoreettisen turvallisuustason noin 128 bittiin. Tämäkin tarjoaa erittäin vahvan suojan.'
   },
   params: [['Key', hx(kA256).slice(0, 16) + '… (256 bit)'], ['Block', '128 bits'], ['Rounds', '14']],
   sep: 3, prep: s => s, make: () => ctrEngine(a256),
   msgs: {
     en: ['Top secret: 256-bit key protection.', 'Quantum computer would need 2^128 steps.', 'Governments and cloud providers trust this.', 'Pure mathematical randomness.'],
-    fi: ['Huippusalainen: 256-bittinen avain.', 'Kvanttitietokone tarvitsisi 2^128 askelta.', 'Hallitukset ja pilvipalvelut luottavat tähän.', 'Puhdasta matemaattista satunnaisuutta.']
+    fi: ['Huippusalaista: 256-bittisen avaimen suojaus.', 'Kvanttitietokone tarvitsisi noin 2^128 askelta.', 'Hallitukset ja pilvipalvelut luottavat tähän salaukseen.', 'Valtava avainavaruus ja matemaattisesti määritelty salaus.']
   } },
 { id: 'chacha', name: 'ChaCha20-Poly1305', year: '2008', type: 'Stream cipher + AEAD', strength: 10, color: '#c6ff00', direct: false, k: 2, charset: HEXSET,
   tagline: 'Modern internet stream cipher',
   desc: {
     en: 'Bernstein’s ChaCha20 combined with Poly1305 authentication tag. Used in TLS 1.3, WireGuard, and OpenSSH.',
-    fi: 'Bernsteinin nopea ChaCha20 yhdistettynä Poly1305-tunnisteeseen. Käytetään TLS 1.3:ssa, WireGuardissa ja OpenSSH:ssa.'
+    fi: 'Bernsteinin nopea ChaCha20-virtasalaus yhdistettynä Poly1305-todennustunnisteeseen. Käytössä muun muassa TLS 1.3:ssa, WireGuardissa ja OpenSSH:ssa.'
   },
   weak: {
     en: 'Requires unique nonce per message. Any single bit tampering is immediately detected by the tag.',
-    fi: 'Vaatii ainutlaatuisen noncen per viesti. Yksikin peukaloitu bitti havaitaan heti tunnisteella.'
+    fi: 'Jokaiselle viestille on käytettävä yksilöllistä nonce-arvoa. Poly1305-tunnisteen avulla viestin muuttaminen voidaan havaita.'
   },
   params: [['Key', hx(kCC).slice(0, 16) + '…'], ['Tag', '16 bytes (Poly1305)'], ['Usage', 'TLS 1.3, WireGuard, OpenSSH']],
   sep: 3, prep: s => s, make: () => chachaEngine(kCC),
   msgs: {
     en: ['Phones without hardware AES run ChaCha20 faster.', 'Designed for speed and simplicity.', 'Tamper-evident authentication tag included.', 'WireGuard and TLS 1.3 rely on this.'],
-    fi: ['Ilman AES-laitetukea ChaCha20 on nopeampi.', 'Suunniteltu nopeuteen ja yksinkertaisuuteen.', 'Tunniste paljastaa heti peukaloinnin.', 'WireGuard ja TLS 1.3 nojaavat tähän.']
+    fi: ['Puhelimissa, joissa ei ole AES-laitteistokiihdytystä, ChaCha20 voi olla nopeampi.', 'Suunniteltu nopeaksi ja yksinkertaiseksi.', 'Sisältää tunnisteen, jonka avulla viestin peukalointi havaitaan.', 'WireGuard ja TLS 1.3 käyttävät tätä salausta.']
   } },
-{ id: 'ecc', name: 'ECC', year: '1985', type: 'Elliptic curve cryptography', strength: 8, level: { en: 'Strong today, but quantum-vulnerable (Shor)', fi: 'Vahva nykyään, mutta kvanttiherkkä (Shor)' }, color: '#ff3df5', direct: false, k: 2, charset: HEXSET,
+{ id: 'ecc', name: 'ECC', year: '1985', type: 'Elliptic curve cryptography', strength: 8, level: { en: 'Strong today, but quantum-vulnerable (Shor)', fi: 'Vahva nykyään, mutta haavoittuvainen Shorin algoritmille' }, color: '#ff3df5', direct: false, k: 2, charset: HEXSET,
   tagline: 'Small key, massive security',
   desc: {
     en: 'Point multiplication on elliptic curves (secp256k1). Provides RSA-level security with much smaller keys. The demo runs a real ECDH key agreement.',
-    fi: 'Elliptisten käyrien matematiikka (secp256k1). Vastaa RSA:n turvaa paljon pienemmällä avaimella. Demo suorittaa oikean ECDH-avaintenvaihdon.'
+    fi: 'Elliptisiin käyriin perustuva kryptografia (secp256k1). Tarjoaa RSA:han verrattavan turvallisuustason huomattavasti pienemmillä avaimilla. Demo suorittaa oikean ECDH-avaintenvaihdon.'
   },
   weak: {
     en: 'Vulnerable to future quantum computers running Shor’s algorithm. Bad random numbers leak private keys.',
-    fi: 'Haavoittuvainen tulevaisuuden kvanttikoneille (Shorin algoritmi). Huono satunnaisluku vuotaa avaimen.'
+    fi: 'Haavoittuvainen Shorin algoritmia käyttäville tulevaisuuden kvanttitietokoneille. Huonosti tuotetut satunnaisluvut voivat paljastaa yksityiset avaimet.'
   },
   params: [['Curve', 'secp256k1 (Bitcoin curve; the web mostly uses P-256 / X25519)'], ['Key size', '256 bit']],
   sep: 3, prep: s => s, make: () => eccEngine(ecSecret),
   msgs: {
     en: ['Elliptic curves: tiny key, huge security.', '256-bit ECC matches 3072-bit RSA.', 'Shared secret born from curve dance.', 'Bitcoin and modern web rely on curves.'],
-    fi: ['Elliptiset käyrät: pieni avain, suuri turva.', '256-bit ECC vastaa 3072-bit RSA:ta.', 'Jaettu salaisuus syntyy käyrällä.', 'Bitcoin ja nykyverkko nojaavat käyriin.']
+    fi: ['Elliptiset käyrät: pienet avaimet, vahva suoja.', '256-bittinen ECC vastaa turvallisuustasoltaan 3072-bittistä RSA:ta.', 'Yhteinen salaisuus muodostuu elliptisen käyrän avulla.', 'Bitcoin ja moderni internet hyödyntävät elliptisiä käyriä.']
   } },
-{ id: 'kyber', name: 'Post-Quantum (ML-KEM)', year: '2024', type: 'Lattice-based (Post-Quantum)', strength: 9, level: { en: 'Quantum-resistant, but young', fi: 'Kvanttia kestävä, mutta nuori' }, color: '#da70d6', direct: false, k: 2, charset: HEXSET,
+{ id: 'kyber', name: 'Post-Quantum (ML-KEM)', year: '2024', type: 'Lattice-based (Post-Quantum)', strength: 9, level: { en: 'Quantum-resistant, but young', fi: 'Kvanttihyökkäyksiä kestävä, mutta uusi menetelmä' }, color: '#da70d6', direct: false, k: 2, charset: HEXSET,
   tagline: 'Ready for the quantum era',
   desc: {
     en: 'NIST standardized lattice-based cryptography designed to resist quantum attacks (FIPS 203, 2024). ML-KEM is a key-encapsulation mechanism: it agrees on keys rather than encrypting messages, and is usually deployed hybrid with X25519. The demo runs real ML-KEM-768 key generation, encapsulation and decapsulation in your browser; the shared secret then seeds a SHA-256 keystream. Educational code: not constant-time, not for production.',
-    fi: 'NISTin standardi kvanttiaikaan (FIPS 203, 2024). Perustuu hilojen vaikeuteen. ML-KEM on avaimenkapselointi: se sopii avaimista eikä salaa viestejä, ja sitä käytetään yleensä yhdessä X25519:n kanssa. Demo suorittaa oikean ML-KEM-768:n avainparin luonnin, kapseloinnin ja purun selaimessasi; jaettu salaisuus ohjaa SHA-256-avainvirtaa. Opetuskoodia: ei vakioaikainen, ei tuotantokäyttöön.'
+    fi: 'NIST standardoi vuonna 2024 kvanttihyökkäyksiä kestävän hilapohjaisen salausmenetelmän (FIPS 203). ML-KEM on avainkapselointimekanismi: sen avulla kaksi osapuolta muodostaa yhteisen salaisuuden sen sijaan, että sillä salattaisiin suoraan viestejä. Sitä käytetään usein hybridimenetelmänä yhdessä X25519:n kanssa. Demo suorittaa selaimessasi oikean ML-KEM-768-avaimen luonnin, kapseloinnin ja kapseloinnin purkamisen. Jaetusta salaisuudesta johdetaan SHA-256-avainvirta. Kyseessä on opetuskäyttöön tarkoitettu toteutus, joka ei ole vakioaikainen eikä sovellu tuotantokäyttöön.'
   },
   weak: {
     en: 'Young standard (2024) that is still being rolled out; its long-term security has had far less scrutiny than RSA or ECC.',
-    fi: 'Nuori standardi (2024), jota vasta otetaan käyttöön; sen pitkän aikavälin turvaa on tutkittu selvästi vähemmän kuin RSA:n tai ECC:n.'
+    fi: 'Vuonna 2024 standardoitu uusi menetelmä, jonka käyttöönotto on yhä käynnissä. Sen pitkän aikavälin turvallisuutta on ehditty arvioida huomattavasti vähemmän kuin RSA:n tai ECC:n turvallisuutta.'
   },
   params: [['Algorithm', 'ML-KEM-768 (FIPS 203, ex-Kyber)'], ['Foundation', 'Lattice problems'], ['Public key ek', '1184 bytes ' + sh(hx(kemPair.ek))], ['Ciphertext c', '1088 bytes ' + sh(hx(kemEnc.c))], ['Shared secret', kemOK ? '32 bytes, both sides agree ✓' : 'MISMATCH'], ['Quantum safety', 'Resistant to Shor\'s algorithm']],
   sep: 3, prep: s => s, make: () => kyberEngine(),
   msgs: {
     en: ['Quantum computers threaten legacy RSA and ECC.', 'NIST selected Kyber as global standard.', 'Mathematical lattices protect future data.', 'Transition to post-quantum era is underway.'],
-    fi: ['Kvanttikoneet uhkaavat vanhaa RSA:ta ja ECC:tä.', 'NIST valitsi Kyberin globaaliksi standardiksi.', 'Matemaattiset hilat suojaavat tulevaisuutta.', 'Siirtymä post-kvanttiaikaan on käynnissä.']
+    fi: ['Kvanttitietokoneet uhkaavat perinteisiä RSA- ja ECC-menetelmiä.', 'NIST standardoi Kyberiin perustuvan ML-KEM-menetelmän.', 'Hilapohjainen matematiikka auttaa suojaamaan tulevaisuuden tietoja.', 'Siirtyminen kvantinkestävään kryptografiaan on käynnissä.']
   } }
 ];
+
 const ORDER = ['skytale', 'atbash', 'caesar', 'vigenere', 'enigma', 'dh', 'des', 'rsa', 'rot13', 'ecc', 'rc4', 'blowfish', 'tdes', 'serpent', 'twofish', 'aes128', 'aes256', 'chacha', 'kyber'];
 return ORDER.map(id => _LIST.find(c => c.id === id));
 })();
@@ -1089,71 +1090,71 @@ function t(key) {
 }
 
 const FI_TAGLINES = {
-  atbash: 'Muinainen heprealainen peilikorvaus',
-  rot13: 'Usenetin juonipaljastusten häivytin',
-  skytale: 'Spartalainen sotilassauva',
-  caesar: 'Rooman sotilaslähete Kleopatralle',
-  vigenere: 'Le chiffre indéchiffrable',
-  enigma: 'Laivaston säätiedotus',
-  des: 'Ensimmäinen kaupallinen standardi',
-  rc4: 'Rivestin kymmenrivinen virtasalaus',
-  dh: 'Salainen kryptografinen kättely',
-  blowfish: 'Nopea ja vapaa lohkosalaus',
-  tdes: 'DES kolminkertaisena',
-  rsa: 'Julkisen avaimen kryptografia',
-  serpent: 'Korkean turvan AES-finalisti',
+  atbash: 'Muinainen heprealainen peilisalaus',
+  rot13: 'Usenetin juonipaljastusten peittäjä',
+  skytale: 'Spartalainen salauskiekko',
+  caesar: 'Rooman sotilasviesti Kleopatralle',
+  vigenere: 'Murtumattomaksi kutsuttu salaus',
+  enigma: 'Saksalaisen laivaston salauskone',
+  des: 'Ensimmäinen kaupallinen salausstandardi',
+  rc4: 'Rivestin virtasalaus',
+  dh: 'Salainen avaintenvaihto',
+  blowfish: 'Nopea ja vapaasti käytettävä lohkosalaus',
+  tdes: 'Kolminkertainen DES-salaus',
+  rsa: 'Julkisen avaimen salaus',
+  serpent: 'AES-kilpailun tietoturvapainotteinen finalisti',
   twofish: 'AES-kilpailun finalisti',
-  aes128: 'Maailmanlaajuinen salausstandardi',
-  aes256: 'Huippusalaisen tason suojaus',
+  aes128: 'Maailmanlaajuisesti käytetty salausstandardi',
+  aes256: 'Erittäin vahva salaus',
   chacha: 'Moderni internetin virtasalaus',
-  ecc: 'Pieni avain, valtava turva',
-  kyber: 'Valmis kvantti-ikkunaan'
+  ecc: 'Lyhyet avaimet, vahva tietoturva',
+  kyber: 'Suunniteltu kestämään kvanttitietokoneita'
 };
 
 const FI_TYPES = {
   'Mirror cipher': 'Peilisalaus',
   'Shift cipher': 'Siirtosalaus',
-  'Transposition cipher': 'Transpositiosalaus',
+  'Transposition cipher': 'Järjestyssalaus',
   'Polyalphabetic substitution': 'Moniaakkosellinen korvaussalaus',
   'Rotor machine': 'Roottorikone',
-  'Block cipher (Feistel)': 'Lohkosalaus (Feistel)',
+  'Block cipher (Feistel)': 'Lohkosalaus (Feistel-rakenne)',
   'Block cipher (3 × DES)': 'Lohkosalaus (3 × DES)',
-  'Block cipher (SPN)': 'Lohkosalaus (SPN)',
-  'Block cipher + CTR': 'Lohkosalaus + CTR',
+  'Block cipher (SPN)': 'Lohkosalaus (SPN-rakenne)',
+  'Block cipher + CTR': 'Lohkosalaus (CTR-tila)',
   'Block cipher': 'Lohkosalaus',
-  'Stream cipher + AEAD': 'Virtasalaus + AEAD',
+  'Stream cipher + AEAD': 'Virtasalaus ja todennettu salaus (AEAD)',
   'Stream cipher': 'Virtasalaus',
   'Key exchange': 'Avaintenvaihto',
-  'Asymmetric encryption': 'Asymmetrinen salaus',
+  'Asymmetric encryption': 'Epäsymmetrinen salaus',
   'Elliptic curve cryptography': 'Elliptisten käyrien kryptografia',
-  'Lattice-based (Post-Quantum)': 'Hilapohjainen (kvanttiturvallinen)'
+  'Lattice-based (Post-Quantum)': 'Hilapohjainen kvanttiturvallinen kryptografia'
 };
 
 const FI_NAMES = { kyber: 'Kvanttiturvallinen (ML-KEM)' };
 
 /* Phrase-level translations for parameter values and live status (longest first) */
 const FI_PHRASES = [
-  ['256-bit demo; real use 2048+ bit', '256-bitin demo; oikeassa käytössä 2048+ bittiä'],
-  ['3 DES keys (168 bit nominal, ≈112 bit effective)', '3 DES-avainta (168 bittiä nimellisesti, ≈112 bittiä tehollisesti)'],
-  ['Bitcoin curve; the web mostly uses', 'Bitcoin-käyrä; verkossa käytetään enimmäkseen'],
+  ['256-bit demo; real use 2048+ bit', '256-bittinen demo; oikeassa käytössä vähintään 2048 bittiä'],
+  ['3 DES keys (168 bit nominal, ≈112 bit effective)', '3 DES-avainta (nimellisesti 168 bittiä, tehollisesti noin 112 bittiä)'],
+  ['Bitcoin curve; the web mostly uses', 'Bitcoinin käyttämä käyrä; verkossa käytetään enimmäkseen'],
   ['Resistant to Shor\'s algorithm', 'Kestää Shorin algoritmin'],
   ['character by character', 'merkki kerrallaan'],
   ['staff circumference:', 'sauvan ympärysmitta:'],
-  ['16 letters (4x4)', '16 kirjainta (4×4)'],
-  ['256-byte S-table', '256 tavun S-taulu'],
-  ['both sides agree', 'molemmat osapuolet saavat saman'],
-  ['reversed alphabet', 'käännetty aakkosto'],
-  ['few thicknesses', 'muutama sauvan paksuus'],
-  ['Lattice problems', 'Hilaongelmat'],
+  ['16 letters (4x4)', '16 kirjainta (4 × 4)'],
+  ['256-byte S-table', '256 tavun S-taulukko'],
+  ['both sides agree', 'molemmat osapuolet päätyvät samaan tulokseen'],
+  ['reversed alphabet', 'käänteinen aakkosto'],
+  ['few thicknesses', 'muutamia eri paksuuksia'],
+  ['Lattice problems', 'Hilaan liittyvät matemaattiset ongelmat'],
   ['1 fixed shift', '1 kiinteä siirto'],
   ['Poly1305 tag:', 'Poly1305-tunniste:'],
   ['25 choices', '25 vaihtoehtoa'],
-  ['Reflector', 'heijastin'],
+  ['Reflector', 'Heijastin'],
   ['keystream', 'avainvirta'],
-  ['XOR stream', 'XOR-virta'],
+  ['XOR stream', 'XOR-virtasalaus'],
   ['1 option', '1 vaihtoehto'],
-  ['MISMATCH', 'EI TÄSMÄÄ'],
-  ['ex-Kyber', 'ent. Kyber'],
+  ['MISMATCH', 'RISTIRIITA'],
+  ['ex-Kyber', 'entinen Kyber'],
   ['shift +', 'siirto +']
 ];
 
