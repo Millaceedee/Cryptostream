@@ -71,12 +71,6 @@ The app focuses on explanation and visual intuition:
 - the interface highlights strengths, weaknesses and practical usage
 - the narrative links history, mathematics and modern digital security
 
-## Try it online
-
-You can open the live app here:
-
-**[Cryptostream live app](https://millaceedee.github.io/Cryptostream/)**
-
 ## Source code
 
 The source code is available in this repository and can be used as a basis for learning, modification or building on the project.
