@@ -45,7 +45,7 @@ header{display:flex;align-items:center;gap:12px;padding:12px 20px 4px;flex-wrap:
 .brand{font-family:var(--mono);font-weight:800;letter-spacing:.22em;font-size:15px}
 .brand b{color:var(--ac);text-shadow:0 0 14px var(--ac)}
 .axis{flex:1;display:flex;align-items:center;gap:10px;font-size:11px;color:var(--dim);letter-spacing:.08em;text-transform:uppercase;min-width:0}
-.axis i{flex:1;height:2px;border-radius:2px;background:linear-gradient(90deg,#ff4d6d,#ffd23f,#2ee6a6,#00f0ff,#ff3df5);opacity:.8}
+.axis i{flex:1;height:2px;border-radius:2px;background:linear-gradient(90deg,#ff4d6d,#ff9f1c,#ffd23f,#7dff4f,#2ee6a6,#00f0ff,#4d9bff,#b388ff,#ff3df5);opacity:.8}
 .ctrl{display:flex;align-items:center;gap:8px;font-size:12px;flex-wrap:wrap}
 .ctrl button,.ctrl label{padding:6px 11px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.03);transition:.2s;white-space:nowrap}
 .ctrl button:hover,.ctrl label:hover{border-color:var(--ac);color:var(--ac);box-shadow:0 0 12px rgba(var(--ac-rgb),.35)}
@@ -1068,7 +1068,11 @@ const _LIST = [
 ];
 
 const ORDER = ['skytale', 'atbash', 'caesar', 'vigenere', 'enigma', 'dh', 'des', 'rsa', 'rot13', 'ecc', 'rc4', 'blowfish', 'tdes', 'serpent', 'twofish', 'aes128', 'aes256', 'chacha', 'kyber'];
-return ORDER.map(id => _LIST.find(c => c.id === id));
+const STOPS = ['#ff4d6d', '#ff9f1c', '#ffd23f', '#7dff4f', '#2ee6a6', '#00f0ff', '#4d9bff', '#b388ff', '#ff3df5'];
+const mixHex = t => { const x = t * (STOPS.length - 1), i = Math.min(Math.floor(x), STOPS.length - 2), f = x - i;
+  const A = STOPS[i], B = STOPS[i + 1], ch = o => { const u = parseInt(A.substr(o, 2), 16), v = parseInt(B.substr(o, 2), 16); return Math.round(u + (v - u) * f).toString(16).padStart(2, '0'); };
+  return '#' + ch(1) + ch(3) + ch(5); };
+return ORDER.map((id, i) => { const c = _LIST.find(x => x.id === id); c.color = mixHex(i / (ORDER.length - 1)); return c; });
 })();
 if (typeof module !== 'undefined') module.exports = CIPHERS;
 </script>
